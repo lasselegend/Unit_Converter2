@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Unit Converter</h1>
+    <form action="/convert" method="post">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="length" {% if category == 'length' %}selected{% endif %}>Length</option>
+            <option value="weight" {% if category == 'weight' %}selected{% endif %}>Weight</option>
+            <option value="temperature" {% if category == 'temperature' %}selected{% endif %}>Temperature</option>
+        </select>
+        
+        <label for="value">Value:</label>
+        <input type="number" id="value" name="value" required>
+        
+        <label for="from_unit">From:</label>
+        <select id="from_unit" name="from_unit"></select>
+        
+        <label for="to_unit">To:</label>
+        <select id="to_unit" name="to_unit"></select>
+        
+        <button type="submit">Convert</button>
+    </form>
+    
+    {% if result is not none %}
+    <h2>Converted Value: {{ result }}</h2>
+    {% endif %}
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const category = document.getElementById('category');
+            const fromUnit = document.getElementById('from_unit');
+            const toUnit = document.getElementById('to_unit');
+
+            if (!category || !fromUnit || !toUnit) {
+                console.error("Dropdown elements not found!");
+                return;
+            }
+
+            const unitOptions = {
+                "length": ['millimeter', 'centimeter', 'meter', 'kilometer', 'inch', 'foot', 'yard', 'mile'],
+                "weight": ['milligram', 'gram', 'kilogram', 'ounce', 'pound'],
+                "temperature": ['Celsius', 'Fahrenheit', 'Kelvin']
+            };
+
+            function updateUnits() {
+                const selectedCategory = category.value.trim();
+
+                if (!unitOptions[selectedCategory]) {
+                    console.error("Invalid category selected:", selectedCategory);
+                    return;
+                }
+
+                fromUnit.innerHTML = '';
+                toUnit.innerHTML = '';
+
+                unitOptions[selectedCategory].forEach(unit => {
+                    fromUnit.innerHTML += `<option value="${unit}" ${unit === "{{ from_unit }}" ? "selected" : ""}>${unit}</option>`;
+                    toUnit.innerHTML += `<option value="${unit}" ${unit === "{{ to_unit }}" ? "selected" : ""}>${unit}</option>`;
+                });
+            }
+
+            category.addEventListener('change', updateUnits);
+            updateUnits();
+        });
+    </script>
+</body>
+</html>

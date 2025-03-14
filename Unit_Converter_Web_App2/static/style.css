@@ -1,0 +1,71 @@
+/* General Styling */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading*/
+h1 {
+    color: #ffffff;
+}
+
+/* Form Styling */
+form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Labels */
+label {
+    font-size: 16px;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Inputs & Select */
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #333;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+/* Button */
+button {
+    background-color: #45b14e;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out
+}
+
+button:hover {
+    background-color: #76ff03;
+}
+
+/* Converted Value Output */
+h2 {   
+    margin-top: 20px;
+    color: #76ff03;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    form{ 
+        width: 90%;
+    }
+}
