@@ -26,5 +26,5 @@ pip install flask
 Navigate to the folder where the script is located and run:
 python Unit_converter.py
 
-The app will automatically open in your default web browser.
+The app will then automatically open in your default web browser.
 
